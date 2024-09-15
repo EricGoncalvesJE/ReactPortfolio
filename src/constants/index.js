@@ -1,7 +1,7 @@
 import {
   threedicon,
-  backend,
-  creator,
+  cloud,
+  pcbuilder,
   web,
   javascript,
   typescript,
@@ -16,7 +16,7 @@ import {
   figma,
   docker,
   meta,
-  starbucks,
+  jerseyflag,
   tesla,
   shopify,
   carrent,
@@ -50,12 +50,12 @@ const services = [
     icon: threedicon,
   },
   {
-    title: "Backend Developer",
-    icon: backend,
+    title: "Cloud Computing",
+    icon: cloud,
   },
   {
-    title: "Content Creator",
-    icon: creator,
+    title: "Love for Innovation",
+    icon: pcbuilder,
   },
 ];
 
@@ -116,85 +116,54 @@ const technologies = [
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Moved to Jersey",
+    company_name: "Everything is different",
+    icon: jerseyflag,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "Aug 2016 - Sep 2018",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "New language, new teachers, new friends, new everything. Despite this, I've adapted fairly easily despite the new challenges. ",
+      "During this time is where I learned a lot about myself and what I would like as a career.",
+      "Finished my GCSEs and moved into Highlands the next year to study IT with a focus on game dev`development.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
+    title: "Highlands College",
+    company_name: "A path in the right direction",
     icon: tesla,
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "Sep 2018 - Jul 2024",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "2018: Started by doing the level 2 IT course",
+      "2019 - 2021: In the second year I did a game development course which taught me a lot about problem solving, teamwork and design/creativity.",
+      "2021 - 2024: I continued my education by completing a degree in IT which finished with me getting a First Class Honours in Science of Digital Technologies.",
+      "During these 6 years I've also been working during weekends in a Chinese Restaurant.",
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
+    title: "Side projects",
+    company_name: "Hobbies/passion projects",
     icon: shopify,
     iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    date: "2018 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Alongside work and school, I've been learning 3D tools such as Blender and ThreeJS.",
+      "Dabbled a bit into programming using C#, HTML/CSS and more recently React.",
+      "Built my own personal PC from individual parts which was a big accomplishment for me.",
     ],
   },
   {
-    title: "Full stack Developer",
-    company_name: "Meta",
+    title: "What's next",
+    company_name: "The future",
     icon: meta,
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "Present - ♾️",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Not really sure what's to come, I love working with anything related to technology/computers. I love innovation and new ideas/ways to work. We'll see what happens. ",
     ],
   },
 ];
 
-const testimonials = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
-];
 
 const projects = [
   {
@@ -262,4 +231,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, projects };

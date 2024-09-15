@@ -43,18 +43,25 @@ const ExperienceCard = ({ experience }) => {
       </div>
 
       <ul className='mt-5 list-disc ml-5 space-y-2'>
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
-          >
-            {point}
-          </li>
-        ))}
+        {experience.points.map((point, index) => {
+          const yearMatch = point.match(/^\d{4}( - \d{4})?/);
+          const year = yearMatch ? yearMatch[0] : '';
+          const text = year ? point.replace(year, '') : point;
+
+          return (
+            <li
+              key={`experience-point-${index}`}
+              className='text-white-100 text-[14px] pl-1 tracking-wider'
+            >
+              <span className='text-white-100 font-bold opacity-60'>{year}</span>{text}
+            </li>
+          );
+        })}
       </ul>
     </VerticalTimelineElement>
   );
 };
+
 
 const Experience = () => {
   return (
@@ -64,7 +71,7 @@ const Experience = () => {
           What I have done so far
         </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
+          My Timeline!
         </h2>
       </motion.div>
 
