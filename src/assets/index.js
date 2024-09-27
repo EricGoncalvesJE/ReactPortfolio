@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import cloud from "./cloud.png";
 import pcbuilder from "./pcbuilder.png";
 import threedicon from "./3DEnthusiast_icon.png";
@@ -7,28 +7,14 @@ import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
-import css from "./tech/css.png";
-import docker from "./tech/docker.png";
-import figma from "./tech/figma.png";
-import git from "./tech/git.png";
-import html from "./tech/html.png";
-import javascript from "./tech/javascript.png";
-import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
-import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
-import tailwind from "./tech/tailwind.png";
-import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
-
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
+import questionmark from "./company/meta.png";
+import blender from "./company/blender.png";
 import jerseyflag from "./company/jerseyflag.png";
-import tesla from "./company/tesla.png";
+import highlands from "./company/highlands.jpg";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import axesshowcase from "./axesimage.png";
+import oldwebsite from "./oldwebsite.png";
+import tripguide from "./newwebsite.png";
 
 export {
   logo,
@@ -39,24 +25,11 @@ export {
   github,
   menu,
   close,
-  css,
-  docker,
-  figma,
-  git,
-  html,
-  javascript,
-  mongodb,
-  nodejs,
-  reactjs,
-  redux,
-  tailwind,
-  typescript,
-  threejs,
-  meta,
-  shopify,
+  questionmark,
+  blender,
   jerseyflag,
-  tesla,
-  carrent,
-  jobit,
+  highlands,
+  axesshowcase,
+  oldwebsite,
   tripguide,
 };

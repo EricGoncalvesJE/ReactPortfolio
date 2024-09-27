@@ -1,97 +1,142 @@
-import React, { Suspense, useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Preload } from "@react-three/drei";
 import * as THREE from "three";
-import CanvasLoader from "../Loader";
 
-const DonutParticles = ({ isMobile }) => {
-  const torusRef = useRef();
-  const raycaster = useRef(new THREE.Raycaster());
-  const mouse = useRef(new THREE.Vector2());
-  const vertices = [];
-  const torusGeometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
-  const positions = torusGeometry.attributes.position.array;
-  vertices.push(...positions);
+const Squares = () => {
+  const squaresRef = useRef([]);
+  const [visibleSquares, setVisibleSquares] = useState([]);
+  const [opacitySquares, setOpacitySquares] = useState([]);
+  const wobbleOffsets = useRef([]);
 
-  const p_geom = new THREE.BufferGeometry();
-  p_geom.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
-  const p_material = new THREE.PointsMaterial({
-    size: 0.08,
-    transparent: true,
-    opacity: 1,
-  });
-  const particles = new THREE.Points(p_geom, p_material);
-  particles.scale.set(isMobile ? 2.1 : 2.25, isMobile ? 2.1 : 2.25, isMobile ? 2.1 : 2.25);
-  particles.position.set(0, 0, -3);
-  particles.rotation.set(0, 0, 0);
-  torusRef.current = particles;
-
-  useFrame(({ camera }) => {
-    if (torusRef.current) {
-      torusRef.current.rotation.y += 0.01; // Adjust the rotation speed as needed
-      raycaster.current.setFromCamera(mouse.current, camera);
-      const intersects = raycaster.current.intersectObject(torusRef.current);
-
-      const targetScale = intersects.length > 0 ? 1.0 : (isMobile ? 2.1 : 2.25);
-      const targetSize = intersects.length > 0 ? 0.05 : 0.15;
-
-      // Smoothly interpolate the scale and size
-      torusRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.05); // Slower transition
-      p_material.size = THREE.MathUtils.lerp(p_material.size, targetSize, 0.05); // Slower transition
-    }
-  });
-
-  // Handle mouse move
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    };
+    const initialSquares = [];
+    const initialWobbleOffsets = [];
+    const gridSizeX = 16; // Adjust the grid size horizontally
+    const gridSizeY = 8; // Adjust the grid size vertically to make it smaller from top and bottom
+    const spacing = 1.75; // Adjust the spacing between squares
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    for (let x = -gridSizeX; x <= gridSizeX; x++) {
+      for (let y = -gridSizeY; y <= gridSizeY; y++) {
+        const square = {
+          position: new THREE.Vector3(x * spacing, y * spacing, 0),
+          mesh: null,
+          color: Math.random() < 0.1 ? `hsl(200, 100%, ${Math.random() * 50 + 50}%)` : "#ffffff", // Random color for a few tiles
+        };
+        initialSquares.push(square);
+        initialWobbleOffsets.push({
+          x: Math.random() * 2 * Math.PI,
+          y: Math.random() * 2 * Math.PI,
+          speed: Math.random() * 0.01 + 0.005, // Reduced wobble speed
+        });
+      }
+    }
+    squaresRef.current = initialSquares;
+    wobbleOffsets.current = initialWobbleOffsets;
+    setVisibleSquares(initialSquares.map(() => true));
+    setOpacitySquares(initialSquares.map(() => 1));
   }, []);
 
-  return <primitive object={particles} ref={torusRef} />;
+  const handlePointerOver = (index) => {
+    const affectedIndices = [];
+    const radius = 3; // Radius to affect 3 by 3 squares
+
+    squaresRef.current.forEach((square, i) => {
+      const distance = squaresRef.current[index].position.distanceTo(square.position);
+      if (distance <= radius * 1.75) { // Adjust the multiplier based on spacing
+        affectedIndices.push(i);
+      }
+    });
+
+    setVisibleSquares((prev) => {
+      const newVisibleSquares = [...prev];
+      affectedIndices.forEach((i) => {
+        newVisibleSquares[i] = false;
+      });
+      return newVisibleSquares;
+    });
+
+    affectedIndices.forEach((i) => {
+      const randomTime = Math.random() * 4000 + 3000; // Random time between 3 and 7 seconds
+      setTimeout(() => {
+        setVisibleSquares((prev) => {
+          const newVisibleSquares = [...prev];
+          newVisibleSquares[i] = true;
+          return newVisibleSquares;
+        });
+        setOpacitySquares((prev) => {
+          const newOpacitySquares = [...prev];
+          newOpacitySquares[i] = 0;
+          return newOpacitySquares;
+        });
+        let opacity = 0;
+        const fadeIn = setInterval(() => {
+          opacity += 0.1; // Faster increase in opacity
+          setOpacitySquares((prev) => {
+            const newOpacitySquares = [...prev];
+            newOpacitySquares[i] = opacity;
+            return newOpacitySquares;
+          });
+          if (opacity >= 1) {
+            clearInterval(fadeIn);
+            setOpacitySquares((prev) => {
+              const newOpacitySquares = [...prev];
+              newOpacitySquares[i] = 1;
+              return newOpacitySquares;
+            });
+          }
+        }, 50); // Smaller interval for smoother transition
+      }, randomTime);
+    });
+  };
+
+  useFrame(() => {
+    squaresRef.current.forEach((square, index) => {
+      const offset = wobbleOffsets.current[index];
+      square.position.x += Math.sin(offset.x + performance.now() * offset.speed) * 0.005; // Reduced wobble amount
+      square.position.y += Math.cos(offset.y + performance.now() * offset.speed) * 0.005; // Reduced wobble amount
+
+      if (square.mesh) {
+        square.mesh.position.copy(square.position);
+      }
+    });
+  });
+
+  return (
+    <>
+      {squaresRef.current.map((square, index) => (
+        <mesh
+          key={index}
+          ref={(mesh) => (square.mesh = mesh)}
+          position={square.position}
+          rotation={[0, 0, 0]}
+          onPointerOver={() => handlePointerOver(index)}
+          visible={visibleSquares[index]}
+        >
+          <planeBufferGeometry args={[1.5, 1.5]} /> {/* Half the size of the original squares */}
+          <meshStandardMaterial
+            color={square.color}
+            opacity={opacitySquares[index]}
+            transparent
+          />
+        </mesh>
+      ))}
+    </>
+  );
 };
 
 const MainPageCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
-
   return (
     <Canvas
-      frameloop="always" // Ensure the canvas updates continuously
+      frameloop="always"
       shadows
       dpr={[1, 2]}
-      camera={{ position: [20, 3, 5], fov: 25 }}
+      camera={{ position: [0, 0, 40], fov: 50 }}
       gl={{ preserveDrawingBuffer: true }}
     >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          enableZoom={false} // Disable zoom
-          maxPolarAngle={Math.PI} // Allow full rotation
-          minPolarAngle={0} // Allow full rotation
-          enableRotate={true} // Enable manual rotation
-        />
-        <DonutParticles isMobile={isMobile} />
-      </Suspense>
-      <Preload all />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      <Squares />
     </Canvas>
   );
 };

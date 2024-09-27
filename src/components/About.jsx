@@ -55,6 +55,28 @@ const About = () => {
         Thank you for visiting my portfolio. I hope you enjoy exploring my projects as much as I enjoyed creating them!
       </motion.p>
 
+      {/* Download CV Button */}
+      <div className='mt-10 flex justify-center items-center'>
+        <a href='/CV.pdf' target='_blank' rel='noopener noreferrer'>
+          <button
+            className='bg-teal-400 text-black-200 text-2xl font-bold py-4 px-8 rounded-xl transition-colors duration-350 hover:bg-gray-900 hover:text-teal-400'
+            onClick={(e) => {
+              e.preventDefault();
+              window.open('/CV.pdf', '_blank');
+              const link = document.createElement('a');
+              link.href = '/CV.pdf';
+              link.download = 'CV.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+          >
+            Download My CV
+          </button>
+        </a>
+      </div>
+
+
       <div className='mt-20 flex flex-wrap gap-10'>
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
