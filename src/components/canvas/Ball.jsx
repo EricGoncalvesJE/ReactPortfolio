@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import StarsCanvas from "./Stars";
 
 const MainBall = () => {
-  const { scene } = useGLTF('/text.glb');
+  const { scene } = useGLTF('/text_center.glb');
   const ref = useRef();
 
   return <primitive ref={ref} object={scene} scale={0.25} />;
@@ -37,7 +37,7 @@ const HTMLlogo = ({ radius, speed, height }) => {
 };
 
 const JSLogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/jslogo.glb');
+  const { scene } = useGLTF('/js_logo.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
