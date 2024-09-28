@@ -112,7 +112,7 @@ const Squares = () => {
           onPointerOver={() => handlePointerOver(index)}
           visible={visibleSquares[index]}
         >
-          <planeBufferGeometry args={[1.5, 1.5]} /> {/* Half the size of the original squares */}
+          <planeGeometry args={[1.5, 1.5]} /> {/* Half the size of the original squares */}
           <meshStandardMaterial
             color={square.color}
             opacity={opacitySquares[index]}
