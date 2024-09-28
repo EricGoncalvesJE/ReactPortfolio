@@ -6,14 +6,14 @@ import * as THREE from 'three';
 import StarsCanvas from "./Stars";
 
 const MainBall = () => {
-  const { scene } = useGLTF('/src/assets/tech/text.glb');
+  const { scene } = useGLTF('/text.glb');
   const ref = useRef();
 
   return <primitive ref={ref} object={scene} scale={0.25} />;
 };
 
 const HTMLlogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/src/assets/tech/html5_logo.glb');
+  const { scene } = useGLTF('/html5_logo.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
@@ -37,7 +37,7 @@ const HTMLlogo = ({ radius, speed, height }) => {
 };
 
 const JSLogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/src/assets/tech/jslogo.glb');
+  const { scene } = useGLTF('/jslogo.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
@@ -62,7 +62,7 @@ const JSLogo = ({ radius, speed, height }) => {
 
 
 const BlenderLogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/src/assets/tech/blenderlogo.glb');
+  const { scene } = useGLTF('/blenderlogo.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
@@ -86,7 +86,7 @@ const BlenderLogo = ({ radius, speed, height }) => {
 };
 
 const VisualStudioLogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/src/assets/tech/visual_studio_logo.glb');
+  const { scene } = useGLTF('/visual_studio_logo.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
@@ -110,7 +110,7 @@ const VisualStudioLogo = ({ radius, speed, height }) => {
 };
 
 const ReactLogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/src/assets/tech/react_logo.glb');
+  const { scene } = useGLTF('/react_logo.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
@@ -134,7 +134,7 @@ const ReactLogo = ({ radius, speed, height }) => {
 };
 
 const ThreeJSLogo = ({ radius, speed, height }) => {
-  const { scene } = useGLTF('/src/assets/tech/threejs.glb');
+  const { scene } = useGLTF('/threejs.glb');
   const ref = useRef();
 
   useFrame(({ clock }) => {
