@@ -8,7 +8,7 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
+  <Tilt className='xs:w-[250px] w-full hidden md:block'>
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
@@ -16,7 +16,7 @@ const ServiceCard = ({ index, title, icon }) => (
       <div
         options={{
           max: 45,
-          scale: 1,
+          scale: 2,
           speed: 450,
         }}
         className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
@@ -44,7 +44,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[20px] max-w-4xl leading-[30px]'
+        className='mt-4 text-secondary text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed'
       >
         Hi there! I’m <span className='text-[#2f97c4]'>Eric</span>, a passionate developer with a deep love for technology and innovation. Ever since I wrote my first line of code, I’ve been captivated by the endless possibilities that technology offers. Whether it’s creating interactive web applications, exploring the realms of 3D graphics with Three.js, or diving into the latest tech trends, I’m always eager to learn and push the boundaries of what’s possible.<br /><br />
 
@@ -57,15 +57,15 @@ const About = () => {
 
       {/* Download CV Button */}
       <div className='mt-10 flex justify-center items-center'>
-        <a href='/CV.pdf' target='_blank' rel='noopener noreferrer'>
+        <a href='./CV.pdf' target='_blank' rel='noopener noreferrer'>
           <button
             className='bg-teal-400 text-black-200 text-2xl font-bold py-4 px-8 rounded-xl transition-colors duration-350 hover:bg-gray-900 hover:text-teal-400'
             onClick={(e) => {
               e.preventDefault();
-              window.open('/CV.pdf', '_blank');
+              window.open('./CV.pdf', '_blank');
               const link = document.createElement('a');
-              link.href = '/CV.pdf';
-              link.download = 'CV.pdf';
+              link.href = './CV.pdf';
+              link.download = './CV.pdf';
               document.body.appendChild(link);
               link.click();
               document.body.removeChild(link);
@@ -75,7 +75,6 @@ const About = () => {
           </button>
         </a>
       </div>
-
 
       <div className='mt-20 flex flex-wrap gap-10'>
         {services.map((service, index) => (

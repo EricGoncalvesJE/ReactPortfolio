@@ -102,7 +102,9 @@ const projects = [
     name: "Jersey Heritage",
     description: (
       <>
-        I've worked with Jersey Heritage for a few years during college to help them 3D scan some historical objects and what uses these may have. Some of the uses we found for them was displaying them on a web browser which is shown <a href="https://ericgoncalvesje.github.io/Jersey-Heritage-3DModels-Showcase/" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'underline' }}>here</a>.
+        I've worked with Jersey Heritage for a few years during college to help them 3D scan some historical objects and what uses these may have.
+        Some of the uses we found for them was displaying them on a web browser which is shown
+        <a href="https://ericgoncalvesje.github.io/Jersey-Heritage-3DModels-Showcase/" target="_blank" className="text-white underline ml-1">here</a>
       </>
     ),
     tags: [
@@ -122,7 +124,9 @@ const projects = [
     name: "My original portfolio",
     description: (
       <>
-        This was essentially a summer project. I used to learn HTML, CSS and JS while showing off my work and skills, all in one page. I also used a bit as a playground to test cool new ideas. It taught me a lot about problem solving and to be creative.
+        This was essentially a summer project. I used to learn HTML, CSS and JS while showing off my work and skills, all in one page.
+        I also used a bit as a playground to test cool new ideas. It taught me a lot about problem solving and to be creative.<span></span>
+        <a href="https://ericgoncalvesje.github.io/mypersonalportfolio/" target="_blank" className="text-white underline ml-1">Check it out!</a>
       </>
     ),
     tags: [
@@ -146,7 +150,10 @@ const projects = [
     name: "This website",
     description: (
       <>
-        This is basically a second version of my original version. The main difference is that it looks more modern and I'm using React, Tailwind, and ThreeJs to give users a more interactive experience. It's a work in progress and was based on this template.
+        This is basically a second version of my original version.
+        The main difference is that it looks more modern and I'm using React, Tailwind, and ThreeJs to give users a more interactive experience.
+        It's a work in progress and was based on
+        <a href="https://www.youtube.com/watch?v=0fYi8SGA20k&t=2519s" target="_blank" className="text-white underline ml-1">this YouTube video.-</a>
       </>
     ),
     tags: [
